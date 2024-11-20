@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cineplex</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1b1b1b;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      border-bottom: 1px solid #444;
+    }
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 20px;
+      gap: 15px;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+    }
+    .main-container {
+      padding: 20px;
+      text-align: center;
+    }
+    .dropdown {
+      margin: 20px 0;
+    }
+    .movies-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .movie-card {
+      background-color: #222;
+      padding: 10px;
+      border-radius: 5px;
+      width: 200px;
+      text-align: center;
+    }
+    .movie-card img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .movie-title {
+      margin: 10px 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .movie-date {
+      font-size: 14px;
+      color: #888;
+    }
+    .movie-icon {
+      margin-top: 10px;
+    }
+    .footer {
+      margin-top: 20px;
+      padding: 10px 0;
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      border-top: 1px solid #444;
+    }
+    .footer a {
+      color: #61dafb;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">AcmePlex
+  </div>
+  <div class="navbar">
+    <a href="#theatres">Theatres</a>
+    <a href="#search">Search</a>
+    <a href="#login">Login</a>
+  </div>
+  <div class="main-container">
+    <div class="dropdown">
+      <label for="theatre-select">Select your theatre:</label>
+      <select id="theatre-select">
+        <option value="default">-- Select --</option>
+        <option value="theatre1">Market Mall</option>
+        <option value="theatre2">Theatre 2</option>
+      </select>
+    </div>
+    <div class="movies-container">
+      <div class="movie-card">
+        <img src="https://via.placeholder.com/200x300" alt="Red One">
+        <div class="movie-title">Red One</div>
+        <div class="movie-date">11/15/2024</div>
+        <div class="movie-icon">🎟</div>
+      </div>
+      <div class="movie-card">
+        <img src="https://via.placeholder.com/200x300" alt="Hello, Love, Again">
+        <div class="movie-title">Hello, Love, Again</div>
+        <div class="movie-date">11/15/2024</div>
+        <div class="movie-icon">🎟</div>
+      </div>
+      <div class="movie-card">
+        <img src="https://via.placeholder.com/200x300" alt="The Best Christmas Pageant Ever">
+        <div class="movie-title">The Best Christmas Pageant Ever</div>
+        <div class="movie-date">11/08/2024</div>
+        <div class="movie-icon">🎟</div>
+      </div>
+      <div class="movie-card">
+        <img src="https://via.placeholder.com/200x300" alt="Heretic">
+        <div class="movie-title">Heretic</div>
+        <div class="movie-date">11/08/2024</div>
+        <div class="movie-icon">🎟</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <a href="#home">Home</a> | <a href="#about">About Us</a> | <a href="#contact">Contact Us</a>
+  </div>
+</body>
+</html>

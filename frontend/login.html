@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1b1b1b;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .login-container {
+      display: flex;
+      width: 80%;
+      max-width: 900px;
+      background-color: white;
+      color: black;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .login-left {
+      padding: 20px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .login-left h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+    .login-left p {
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    .login-left input[type="email"],
+    .login-left input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .login-left label {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .login-left label input {
+      margin-right: 10px;
+    }
+    .login-left button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .login-left button:hover {
+      background-color: #0056b3;
+    }
+    .or-divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+    }
+    .or-divider::before,
+    .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #ccc;
+    }
+    .or-divider span {
+      padding: 0 10px;
+      font-size: 14px;
+      color: #888;
+    }
+    .login-right {
+      padding: 20px;
+      width: 50%;
+      background: linear-gradient(to bottom, #4a90e2, #0056b3);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .login-right button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 200px;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .login-right button img {
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+    .login-right button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-left">
+      <h2>Log In</h2>
+      <p>Don’t have an account? <a href="#" style="color: #007bff;">Sign Up</a></p>
+      <form>
+        <input type="email" placeholder="Enter Email*" required>
+        <input type="password" placeholder="Enter Password*" required>
+        <label>
+          <input type="checkbox"> Keep Me Logged In
+        </label>
+        <button type="submit">LOG IN &gt;</button>
+      </form>
+      <div class="or-divider"><span>or</span></div>
+    </div>
+    <div class="login-right">
+      <button><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"> Facebook</button>
+      <button><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google"> Sign in with Google</button>
+    </div>
+  </div>
+</body>
+</html>
