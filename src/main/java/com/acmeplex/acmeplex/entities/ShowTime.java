@@ -19,6 +19,7 @@ public class ShowTime {
     @JoinColumn(name = "theatre_id")
     private Theatre theatre;
 
+
     @OneToMany(mappedBy = "showTime")
     private List<Seat> seats;
 

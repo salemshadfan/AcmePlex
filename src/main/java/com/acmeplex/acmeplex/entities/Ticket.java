@@ -13,6 +13,7 @@ public class Ticket {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+
     @ManyToOne
     @JoinColumn(name = "seat_id")
     private Seat seat;

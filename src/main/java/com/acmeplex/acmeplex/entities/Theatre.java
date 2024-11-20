@@ -11,6 +11,7 @@ public class Theatre {
     private String name;
     private String location;
 
+
     @ManyToOne
     @JoinColumn(name = "acmeplex_id")
     private AcmePlex acmeplex;

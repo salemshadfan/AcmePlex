@@ -11,6 +11,7 @@ public class AcmePlex {
     private Long id;
     private String name;
 
+
     @OneToMany(mappedBy = "acmeplex")
     private List<Theatre> theatres;
 

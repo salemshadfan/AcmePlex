@@ -14,6 +14,7 @@ public abstract class Customer {
     private String email;
     private String password;
 
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Ticket> tickets = new ArrayList<>();
 

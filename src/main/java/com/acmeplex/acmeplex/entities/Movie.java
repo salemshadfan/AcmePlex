@@ -14,6 +14,7 @@ public class Movie {
     private int duration; // Duration in minutes
     private String description;
 
+
     @OneToMany(mappedBy = "movie")
     private List<ShowTime> showTimes;
 

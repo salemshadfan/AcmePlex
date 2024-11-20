@@ -10,6 +10,7 @@ public class Receipt {
     private String receiptDate;
     private double totalAmount;
 
+
     @OneToOne
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
