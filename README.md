@@ -1,2 +1,2 @@
 # AcmePlex
-Movie Theatre Booking Web App
+Movie Theatre Booking Web App.
