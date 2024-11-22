@@ -13,12 +13,21 @@ public class Movie {
     private String genre;
     private int duration; // Duration in minutes
     private String description;
+    private String imageUrl;
 
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
     private List<ShowTime> showTimes;
 
-    // Getters and Setters
+    public Movie() {
+
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getTitle() { return title; }

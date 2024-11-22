@@ -1,6 +1,9 @@
 package com.acmeplex.acmeplex.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDate;
 
 @Entity
@@ -8,12 +11,26 @@ public class RegisteredUser extends Customer {
     private double annualFee = 20.0;
     private LocalDate registrationDate;
     private String password;
+    @ManyToOne
+    @JoinColumn(name = "paymentmethod_id")
+    private Payment paymentmethod;
+
+    public Payment getPaymentmethod() {
+        return paymentmethod;
+    }
+
+    public void setPaymentmethod(Payment paymentmethod) {
+        this.paymentmethod = paymentmethod;
+    }
 
     // Constructor
-    public RegisteredUser(String email, String password, LocalDate registrationDate) {
-        super(email, true); // isRegistered always true
+    public RegisteredUser(String FirstName, String LastName, String email, String password, LocalDate registrationDate, String creditCardNumber, String cardType,
+                          String ccv, String expiryDate ) {
+        super(FirstName,LastName,email, true); // isRegistered always true
         this.password = password;
         this.registrationDate = registrationDate;
+        this.paymentmethod= new Payment(creditCardNumber,cardType,ccv,expiryDate,annualFee);
+
     }
 
     public RegisteredUser() {

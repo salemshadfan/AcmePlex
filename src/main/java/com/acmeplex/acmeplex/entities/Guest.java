@@ -6,8 +6,8 @@ import jakarta.persistence.Entity;
 public class Guest extends Customer {
 
     // Constructor
-    public Guest(String email) {
-        super(email, false); // isRegistered always false
+    public Guest(String FirstName, String LastName,String email) {
+        super(FirstName,LastName,email, false); // isRegistered always false
     }
 
     public Guest() {

@@ -32,13 +32,19 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(
+            @RequestParam String FirstName,
+            @RequestParam String LastName,
+            @RequestParam String creditCardNumber,
+            @RequestParam String cvc,
+            @RequestParam String expiryDate,
+            @RequestParam String cardType,
             @RequestParam String email,
             @RequestParam String password) {
         if (customerRepository.findRegisteredUserByEmail(email).isPresent()) {
             throw new IllegalArgumentException("Email is already registered");
         }
 
-        RegisteredUser newUser = new RegisteredUser(email, password, java.time.LocalDate.now());
+        RegisteredUser newUser = new RegisteredUser(FirstName, LastName,email, password, java.time.LocalDate.now(), creditCardNumber, cardType,cvc,expiryDate);
         customerRepository.save(newUser);
 
         return ResponseEntity.ok("Sign-up successful");
