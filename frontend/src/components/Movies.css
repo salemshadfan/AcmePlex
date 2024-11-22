@@ -1,0 +1,70 @@
+.movies-page {
+    padding: 20px;
+}
+
+.movies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adds spacing between items */
+    justify-content: center; /* Centers the items */
+}
+
+.movie-card {
+    flex: 0 0 18%; /* Adjust this to fit five items in a row */
+    max-width: 18%; /* Ensure the width doesn't exceed the specified size */
+    box-sizing: border-box; /* Includes padding and border in width/height */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.movie-image {
+    width: 100%;
+    height: 200px; /* Adjust height as needed */
+    object-fit: cover;
+}
+
+.movie-name {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.movie-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.movie-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.movie-ticket,
+.movie-play {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.movie-ticket:hover,
+.movie-play:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,100 @@
+.showtimes-page {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.movie-showtimes {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.movie-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.movie-image {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.movie-info {
+    flex-grow: 1;
+}
+
+.movie-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.movie-duration {
+    font-size: 1rem;
+    color: #666;
+}
+
+.showtimes-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.showtime-button {
+    background-color: gold;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.showtime-button.selected {
+    border: 2px solid darkgoldenrod;
+}
+
+.showtime-button:hover {
+    background-color: #e6b800;
+}
+
+.view-seats-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.view-seats-button {
+    background-color: #ccc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: not-allowed;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.view-seats-button:hover {
+    background-color: #aaa;
+}
+
+.view-seats-button:enabled {
+    background-color: darkgoldenrod;
+    cursor: pointer;
+}
+
+.view-seats-button:enabled:hover {
+    background-color: goldenrod;
+}
