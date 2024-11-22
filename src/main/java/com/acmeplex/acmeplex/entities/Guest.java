@@ -4,10 +4,19 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Guest extends Customer {
-    // Additional fields or methods for Ordinary Users can be added here
 
+    // Constructor
+    public Guest(String email) {
+        super(email, false); // isRegistered always false
+    }
+
+    public Guest() {
+        super(); // Default constructor for JPA
+        setRegistered(false);
+    }
+
+    // Refund calculation
     public double calculateRefund(double ticketPrice) {
-        // Apply a 15% admin fee for refunds
-        return ticketPrice * 0.85;
+        return ticketPrice * 0.85; // Deduct 15% admin fee
     }
 }

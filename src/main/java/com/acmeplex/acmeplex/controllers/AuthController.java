@@ -1,81 +1,57 @@
 package com.acmeplex.acmeplex.controllers;
 
 import com.acmeplex.acmeplex.entities.RegisteredUser;
-import com.acmeplex.acmeplex.repositories.RegisteredUserRepository;
+import com.acmeplex.acmeplex.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000") // Allow React frontend
+@RequestMapping("/api/customers")
 public class AuthController {
 
     @Autowired
-    private RegisteredUserRepository registeredUserRepository;
+    private CustomerRepository customerRepository;
 
-    /**
-     * Sign up a new Registered User.
-     * Requires email, password, and payment of the annual fee.
-     */
-    @PostMapping("/signup")
-    public ResponseEntity<?> signUp(
-            @RequestBody RegisteredUser request,
-            @RequestParam double payment
-    ) {
-        try {
-            // Validate payment
-            if (payment < 20.0) {
-                return ResponseEntity.badRequest().body("Annual fee must be paid in full to register.");
-            }
-
-            // Check if email is already registered
-            if (registeredUserRepository.findByEmail(request.getEmail()) != null) {
-                return ResponseEntity.badRequest().body("Email is already registered.");
-            }
-
-            // Create a new Registered User
-            RegisteredUser newUser = new RegisteredUser();
-            newUser.setEmail(request.getEmail());
-            newUser.setPassword(request.getPassword()); // Hash this in production
-            newUser.setRegistrationDate(LocalDate.now());
-
-            registeredUserRepository.save(newUser);
-            return ResponseEntity.ok("Registered successfully!");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("An error occurred during sign-up.");
-        }
-    }
-
-    /**
-     * Login an existing Registered User.
-     * Requires email and password.
-     */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody RegisteredUser request) {
-        try {
-            RegisteredUser user = registeredUserRepository.findByEmail(request.getEmail());
+    public ResponseEntity<String> login(
+            @RequestParam String email,
+            @RequestParam String password,
+            HttpSession session) {
+        RegisteredUser user = customerRepository.findRegisteredUserByEmailAndPassword(email, password)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
 
-            if (user == null || !user.getPassword().equals(request.getPassword())) {
-                return ResponseEntity.status(401).body("Invalid email or password.");
-            }
+        // Store user ID and email in the session
+        session.setAttribute("userId", user.getId());
+        session.setAttribute("email", user.getEmail());
+        session.setAttribute("isRegistered", true);
 
-            // In production, generate and return a JWT token here
-            return ResponseEntity.ok("Login successful!");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("An error occurred during login.");
+        return ResponseEntity.ok("Login successful");
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<String> signUp(
+            @RequestParam String email,
+            @RequestParam String password) {
+        if (customerRepository.findRegisteredUserByEmail(email).isPresent()) {
+            throw new IllegalArgumentException("Email is already registered");
         }
+
+        RegisteredUser newUser = new RegisteredUser(email, password, java.time.LocalDate.now());
+        customerRepository.save(newUser);
+
+        return ResponseEntity.ok("Sign-up successful");
     }
 
-    /**
-     * Guest checkout.
-     * Simply uses the email for the current transaction without storing it.
-     */
-    @PostMapping("/guest/checkout")
-    public ResponseEntity<?> guestCheckout(@RequestParam String email) {
-        // Use the email for confirmation or other guest-specific operations
-        return ResponseEntity.ok("Guest checkout successful. Confirmation sent to " + email);
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpSession session) {
+        session.invalidate(); // Invalidate the session
+        return ResponseEntity.ok("Logged out successfully");
     }
+
+
+
 }
+
+

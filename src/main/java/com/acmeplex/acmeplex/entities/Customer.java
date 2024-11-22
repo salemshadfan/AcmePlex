@@ -1,46 +1,49 @@
 package com.acmeplex.acmeplex.entities;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) // Table-per-subclass strategy
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+
     private String email;
 
+    private boolean isRegistered;
 
+    public Customer(String email, boolean isRegistered) {
+        this.email = email;
+        this.isRegistered = isRegistered;
+    }
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Ticket> tickets = new ArrayList<>();
+    public Customer() {
 
-    // Common Getters and Setters
+    }
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
-    public List<Ticket> getTickets() {
-        return tickets;
+
+    public boolean isRegistered() {
+        return isRegistered;
     }
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+
+    protected void setRegistered(boolean isRegistered) {
+        this.isRegistered = isRegistered; // Protected to control from subclasses
     }
 }
