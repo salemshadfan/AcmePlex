@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header'; // Import Header component
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import Logout from './components/Logout';
+import Login from './components/login';
+import SignUp from './components/signup';
+import Logout from './components/logout';
 import Movies from './components/Movies';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
