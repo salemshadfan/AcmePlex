@@ -12,7 +12,7 @@ public abstract class Customer {
     private Long id;
     private String name;
     private String email;
-    private String password;
+
 
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
@@ -36,12 +36,6 @@ public abstract class Customer {
     }
     public void setEmail(String email) {
         this.email = email;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
     }
     public List<Ticket> getTickets() {
         return tickets;
