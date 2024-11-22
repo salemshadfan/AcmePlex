@@ -1,0 +1,19 @@
+.about-us-page {
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.about-us-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.about-us-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+}
