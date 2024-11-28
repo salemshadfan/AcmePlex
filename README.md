@@ -26,18 +26,11 @@ AcmePlex is a movie theater ticket reservation system with a Spring Boot backend
    ```
 
 ### Frontend
-1. Navigate to the frontend directory:
+1. Run the frontend setup script:
    ```bash
-   cd frontend
+   python setup_frontend.py
    ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the React development server:
-   ```bash
-   npm start
-   ```
+
 
 ---
 
@@ -50,10 +43,4 @@ AcmePlex is a movie theater ticket reservation system with a Spring Boot backend
   npm install
   ```
 
----
-
-## Authors
-
-- Your Name
-- Contributors
 
