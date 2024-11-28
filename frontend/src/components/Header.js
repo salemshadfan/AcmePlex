@@ -1,21 +1,50 @@
 import React from 'react';
-import './Header.css'; // Ensure you create this file for custom styles
+import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
+import './Header.css'; // Ensure this file contains your custom styles
+import logo from '../assets/logo.png';
 
-const Header = ({ onNavigate }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn }) => {
+    const navigate = useNavigate(); // Hook for programmatic navigation
+
+    const handleLogout = () => {
+        sessionStorage.clear(); // Clear session data
+        setIsLoggedIn(false); // Update logged-in state
+        navigate('/'); // Redirect to the home page
+    };
+
     return (
         <header className="header">
             <div className="logo-container">
-                <img src="logo.png" alt="AcmePlex Logo" className="logo" />
+                <img src={logo} alt="AcmePlex Logo" className="logo"/>
                 <span className="cinema-name">AcmePlex</span>
             </div>
             <nav className="nav">
-                <button onClick={() => onNavigate('showtimes')} className="nav-link" style={{ color: 'gold', fontSize: '18px', fontWeight: 'bold' }}>Showtimes</button>
-                <button onClick={() => onNavigate('movies')} className="nav-link" style={{ color: 'gold', fontSize: '18px', fontWeight: 'bold' }}>Movies</button>
+                <Link to="/" className="nav-link" style={{ color: 'gold', fontSize: '18px', fontWeight: 'bold' }}>
+                    Book
+                </Link>
+                <Link to="/refund" className="nav-link" style={{ color: 'gold', fontSize: '18px', fontWeight: 'bold' }}>
+                    Cancel
+                </Link>
+
             </nav>
             <div className="auth-container">
-                <button onClick={() => onNavigate('login')} className="auth-button" style={{ backgroundColor: 'gold', color: 'black', fontWeight: 'bold' }}>
-                    <span className="auth-icon">👤</span> LOG IN/SIGN UP
-                </button>
+                {isLoggedIn ? (
+                    <button
+                        onClick={handleLogout}
+                        className="auth-button"
+                        style={{ backgroundColor: 'gold', color: 'black', fontWeight: 'bold' }}
+                    >
+                        <span className="auth-icon">👤</span> LOG OUT
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => navigate('/login')}
+                        className="auth-button"
+                        style={{ backgroundColor: 'gold', color: 'black', fontWeight: 'bold' }}
+                    >
+                        <span className="auth-icon">👤</span> LOG IN/SIGN UP
+                    </button>
+                )}
             </div>
         </header>
     );

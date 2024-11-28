@@ -1,15 +1,23 @@
+/* Footer Styles */
 .footer {
     background-color: #282c34;
     padding: 20px;
     text-align: center;
+    position: relative; /* Can be adjusted depending on layout */
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for a clean look */
+    color: lightgrey;
 }
 
+/* Flexbox layout for footer links */
 .footer-links {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
+/* Style individual footer links */
 .footer-link {
     color: lightgrey;
     background: none;
@@ -20,6 +28,7 @@
     transition: color 0.3s;
 }
 
+/* Change link color on hover */
 .footer-link:hover {
     color: white;
 }

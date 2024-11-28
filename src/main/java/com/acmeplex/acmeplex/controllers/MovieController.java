@@ -1,13 +1,20 @@
 package com.acmeplex.acmeplex.controllers;
 
 import com.acmeplex.acmeplex.entities.Movie;
+import com.acmeplex.acmeplex.entities.ShowTime;
+import com.acmeplex.acmeplex.entities.Theatre;
 import com.acmeplex.acmeplex.repositories.MovieRepository;
+import com.acmeplex.acmeplex.repositories.TheatreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -17,6 +24,7 @@ public class MovieController {
 
     @Autowired
     private MovieRepository movieRepository;
+
 
 
     @GetMapping(value = {"/", "/{id}"})
@@ -32,4 +40,12 @@ public class MovieController {
                     .orElse(ResponseEntity.notFound().build());
         }
     }
+
+
+
+
+
+
+
+
 }

@@ -1,95 +1,68 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header'; // Import Header component
-import Login from './components/login';
-import SignUp from './components/signup';
-import Logout from './components/logout';
-import Movies from './components/Movies';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Header from './components/Header';
 import Footer from './components/Footer';
+import Movies from './components/Movies';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import Showtimes from './components/Showtimes';
-import './App.css'; // Ensure styles are added
+import Logout from './components/Logout';
+import MovieDetails from './components/MovieDetails';
+import './index.css';
+import './App.css';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [currentPage, setCurrentPage] = useState('movies'); // Default to Movies Page
-    const renderPage = () => {
-        switch (currentPage) {
-            case 'showtimes':
-                return <Showtimes />;
-            case 'about':
-                return <AboutUs />
-            case 'contact':
-                return <ContactUs />;
-            // Add more cases for other pages if needed
-        }
-    };
+
+    // Check login status on app load and when sessionStorage changes
     useEffect(() => {
-        // Check sessionStorage for login status on page load
         const loginStatus = sessionStorage.getItem('isLoggedIn') === 'true';
         setIsLoggedIn(loginStatus);
     }, []);
 
-    const navigateTo = (page) => setCurrentPage(page);
-
     return (
-        <div>
-            <Header onNavigate={navigateTo}/>
+        <Router>
+            <div id="root">
+                <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+                <div className="content">
+                    <Routes>
+                        {/* Public Routes */}
+                        <Route path="/" element={<Movies/>}/>
+                        <Route path="/about" element={<AboutUs/>}/>
+                        <Route path="/contact" element={<ContactUs/>}/>
+                        <Route path="/movie/:id" element={<MovieDetails/>}/>
 
-            {currentPage === 'movies' && <Movies/>}
-            {currentPage === 'showtimes' && <Showtimes/>}
-            {currentPage === 'login' && (
-                <div>
-                    <Login setIsLoggedIn={setIsLoggedIn}/>
-                    <div style={{textAlign: 'center', marginTop: '20px',  backgroundColor: '#f8f9fa',}}>
-                        <p>Don't have an account?</p>
-                        <button
-                            onClick={() => navigateTo('signup')}
-                            style={{
-                                backgroundColor: 'gold',
-                                color: 'black',
-                                border: 'none',
-                                padding: '10px 20px',
-                                cursor: 'pointer',
-                                borderRadius: '5px'
-                            }}
-                        >
-                            Sign Up
-                        </button>
-                    </div>
-                </div>
-            )}
-            {currentPage === 'signup' && (
-                <div>
-                    <SignUp/>
-                    <div style={{textAlign: 'center', marginTop: '20px',  backgroundColor: '#f8f9fa',}}>
-                        <p>Already have an account?</p>
-                        <button
-                            onClick={() => navigateTo('login')}
-                            style={{
-                                backgroundColor: 'gold',
-                                color: 'black',
-                                border: 'none',
-                                padding: '10px 20px',
-                                cursor: 'pointer',
-                                borderRadius: '5px'
-                            }}
-                        >
-                            Log In
-                        </button>
-                    </div>
-                </div>
-            )}
-            <div>
-                {/* Render the page based on currentPage */}
-                {renderPage()}
-                {/* Footer with navigation */}
-                <Footer setCurrentPage={setCurrentPage}/>
-            </div>
+                        {/* Auth Routes */}
+                        <Route path="/login"
+                               element={!isLoggedIn ? <Login setIsLoggedIn={setIsLoggedIn}/> : <Navigate to="/"/>}/>
+                        <Route path="/signup" element={!isLoggedIn ? <SignUp/> : <Navigate to="/"/>}/>
 
-            {isLoggedIn && currentPage === 'main' && <Movies/>} {/* Render MainPage if logged in */}
-        </div>
-    );
+                        {/* Protected Routes */}
+                        <Route
+                            path="/showtimes"
+                            element={isLoggedIn ? <Showtimes/> : <Navigate to="/login"/>}
+                        />
+                        <Route
+                            path="/logout"
+                            element={
+                                isLoggedIn ? (
+                                    <Logout setIsLoggedIn={setIsLoggedIn}/>
+                                ) : (
+                                    <Navigate to="/login"/>
+                                )
+                            }
+                        />
+
+                        {/* Fallback Route */}
+                        <Route path="*" element={<h1 style={{textAlign: 'center'}}>404 - Page Not Found</h1>}/>
+                    </Routes>
+                </div>
+                    <Footer/>
+                </div>
+        </Router>
+);
 };
 
 export default App;

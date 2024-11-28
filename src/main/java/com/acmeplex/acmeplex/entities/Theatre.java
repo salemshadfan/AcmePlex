@@ -1,5 +1,6 @@
 package com.acmeplex.acmeplex.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class Theatre {
     @JoinColumn(name = "acmeplex_id")
     private AcmePlex acmeplex;
 
-    @OneToMany(mappedBy = "theatre")
+    @OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<ShowTime> showTimes;
 
     // Getters and Setters

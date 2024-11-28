@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './Footer.css';
 
-const Footer = ({ setCurrentPage }) => {
+const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-links">
-                <button onClick={() => setCurrentPage('about')} className="footer-link">About Us</button>
-                <button onClick={() => setCurrentPage('contact')} className="footer-link">Contact Us</button>
-                <button onClick={() => setCurrentPage('registered-users')} className="footer-link">Registered Users</button>
+                <Link to="/about" className="footer-link">About Us</Link>
+                <Link to="/contact" className="footer-link">Contact Us</Link>
+                <Link to="/registered-users" className="footer-link">Registered Users</Link>
             </div>
         </footer>
     );

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import api from './api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setIsLoggedIn }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
@@ -12,6 +13,7 @@ const Login = ({ setIsLoggedIn }) => {
             sessionStorage.setItem('isLoggedIn', 'true'); // Track login status
             setIsLoggedIn(true); // Update state
             alert('Login successful!');
+            navigate('/');
         } catch (error) {
             console.error('Login error:', error.response?.data || error.message);
             alert('Login failed: ' + (error.response?.data || error.message));

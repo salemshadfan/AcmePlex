@@ -1,6 +1,7 @@
 package com.acmeplex.acmeplex.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class Movie {
     private String imageUrl;
 
 
-    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<ShowTime> showTimes;
 
     public Movie() {

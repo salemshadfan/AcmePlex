@@ -1,8 +1,6 @@
 package com.acmeplex.acmeplex.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -11,8 +9,8 @@ public class RegisteredUser extends Customer {
     private double annualFee = 20.0;
     private LocalDate registrationDate;
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "paymentmethod_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id")
     private Payment paymentmethod;
 
     public Payment getPaymentmethod() {
