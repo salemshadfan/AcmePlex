@@ -56,7 +56,7 @@ def start_backend():
     print("[INFO] Starting the Spring Boot backend...")
     try:
         env = os.environ.copy()
-        subprocess.run(["mvn" ,"spring-boot:run"], cwd="./", check=True,env=env)
+        subprocess.run("mvn spring-boot:run", cwd="./", check=True,shell=True)
     except FileNotFoundError:
         
         print("[ERROR] Maven Wrapper (mvnw) is not found in the project directory.")

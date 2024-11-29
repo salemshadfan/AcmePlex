@@ -8,8 +8,8 @@ def start_frontend():
     """
     print("[INFO] Starting the React frontend...")
     try:
-        subprocess.run(["npm", "install"], cwd="./frontend", check=True)
-        subprocess.run(["npm", "start"], cwd="./frontend", check=True)
+        subprocess.run("npm install", cwd="./frontend", check=True, shell=True)
+        subprocess.run("npm start", shell=True,cwd="./frontend", check=True)
     except FileNotFoundError:
         print("[ERROR] Node.js is not installed or npm is not found.")
         exit(1)

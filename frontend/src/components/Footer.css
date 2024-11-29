@@ -1,19 +1,31 @@
-/* Footer Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+/* Wrapper for content and footer */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Content fills the remaining space */
+.content {
+    flex: 1;
+}
+
+/* Footer sticks to the bottom */
 .footer {
     background-color: #282c34;
     padding: 20px;
     text-align: center;
-    position: relative; /* Can be adjusted depending on layout */
-    bottom: 0;
     width: 100%;
-    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for a clean look */
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2);
     color: lightgrey;
-    
-    max-width: 100%; /* Prevent footer from exceeding screen width */
-    overflow-x: hidden; 
 }
 
-/* Flexbox layout for footer links */
 .footer-links {
     display: flex;
     justify-content: center;

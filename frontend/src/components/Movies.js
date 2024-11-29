@@ -28,29 +28,29 @@ const Movies = () => {
     }, []);
 
     return (
-        <div className="movies-page">
-            <header className="movies-header">
+        <div className="movies-container">
+            <header className="movies-title-section">
                 <h1>Now Showing</h1>
                 <p>Find your next favorite movie below</p>
             </header>
 
             {loading ? (
-                <div className="loading-message">Loading movies...</div>
+                <div className="movies-loading-message">Loading movies...</div>
             ) : error ? (
-                <div className="error-message">{error}</div>
+                <div className="movies-error-message">{error}</div>
             ) : (
-                <div className="movies-grid">
+                <div className="movies-list">
                     {movies.map((movie) => (
-                        <div key={movie.id} className="movie-card">
-                            <div className="movie-image-container">
+                        <div key={movie.id} className="movies-item">
+                            <div className="movies-image-wrapper">
                                 <img
                                     src={movie.imageUrl || '/path/to/default-movie.jpg'}
                                     alt={movie.title}
-                                    className="movie-image"
+                                    className="movies-image"
                                 />
                                 <button
                                     onClick={() => navigate(`/movie/${movie.id}`)}
-                                    className="movie-ticket-overlay"
+                                    className="movies-showtimes-button"
                                 >
                                     SHOW TIMES
                                 </button>
