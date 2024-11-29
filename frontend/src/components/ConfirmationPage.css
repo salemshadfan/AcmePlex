@@ -1,0 +1,97 @@
+/* Confirmation Page CSS */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.confirmation-page {
+    text-align: center;
+    padding: 2rem;
+}
+
+.no-booking-details {
+    text-align: center;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-bottom: 1rem;
+}
+
+.receipt-details {
+    border: 1px solid #ddd;
+    padding: 2rem;
+    border-radius: 12px;
+    display: block; /* Changed from inline-block to block */
+    text-align: left;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 700px;
+    width: 90%;
+    font-size: 1rem;
+}
+.receipt-details h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.receipt-details p {
+    margin: 0.75rem 0;
+    line-height: 1.6;
+}
+
+.tickets-list {
+    margin-top: 1.5rem;
+    padding-left: 1.5rem;
+    font-size: 1rem;
+}
+
+.tickets-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: #34495e;
+}
+
+.back-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.back-button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:focus {
+    outline: none;
+}
+
+.back-button:active {
+    background-color: #2471a3;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}

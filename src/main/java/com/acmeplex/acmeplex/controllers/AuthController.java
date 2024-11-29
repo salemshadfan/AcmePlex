@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -22,7 +24,7 @@ public class AuthController {
     private PaymentRepository paymentRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(
+    public ResponseEntity<Map<String, Object>>  login(
             @RequestParam String email,
             @RequestParam String password,
             HttpSession session) {
@@ -34,7 +36,11 @@ public class AuthController {
         session.setAttribute("email", user.getEmail());
         session.setAttribute("isRegistered", true);
 
-        return ResponseEntity.ok("Login successful");
+        Map<String, Object> response = new HashMap<>();
+        response.put("userId", user.getId());
+        response.put("email", user.getEmail());
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/signup")

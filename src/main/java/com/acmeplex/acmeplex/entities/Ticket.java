@@ -38,4 +38,24 @@ public class Ticket {
     public void setPrice(double price) {
         this.price = price;
     }
+    public void setSeat(Seat seat){
+        this.seat=seat;
+    }
+
+    public void setShowTime(ShowTime showTime2) {
+       this.showTime = showTime2;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Seat getSeat() {
+        return this.seat;
+    }
+
+    public ShowTime getShowtime() {
+        return this.showTime;
+    }
 }
+

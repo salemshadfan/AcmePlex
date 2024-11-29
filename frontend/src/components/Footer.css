@@ -8,6 +8,9 @@
     width: 100%;
     box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for a clean look */
     color: lightgrey;
+    
+    max-width: 100%; /* Prevent footer from exceeding screen width */
+    overflow-x: hidden; 
 }
 
 /* Flexbox layout for footer links */

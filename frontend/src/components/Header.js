@@ -20,10 +20,10 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             </div>
             <nav className="nav">
                 <Link to="/" className="nav-link" style={{ color: 'gold', fontSize: '18px', fontWeight: 'bold' }}>
-                    Book
+                    MOVIES
                 </Link>
                 <Link to="/refund" className="nav-link" style={{ color: 'gold', fontSize: '18px', fontWeight: 'bold' }}>
-                    Cancel
+                    CANCEL BOOKING
                 </Link>
 
             </nav>

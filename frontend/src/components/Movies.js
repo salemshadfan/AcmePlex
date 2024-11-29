@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './Movies.css';
 
 const Movies = () => {
-    const [location, setLocation] = useState('NW');
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -30,55 +29,38 @@ const Movies = () => {
 
     return (
         <div className="movies-page">
-
+            <header className="movies-header">
+                <h1>Now Showing</h1>
+                <p>Find your next favorite movie below</p>
+            </header>
 
             {loading ? (
-                <div style={{ textAlign: 'center', fontSize: '1.5rem' }}>Loading movies...</div>
+                <div className="loading-message">Loading movies...</div>
             ) : error ? (
-                <div style={{ textAlign: 'center', fontSize: '1.5rem', color: 'red' }}>{error}</div>
-            ) : location === 'NW' ? (
-                <div className="movies-list">
+                <div className="error-message">{error}</div>
+            ) : (
+                <div className="movies-grid">
                     {movies.map((movie) => (
-                        <div
-                            key={movie.id}
-                            className="movie-card"
-                            style={{ flex: '1 0 18%', margin: '10px' }}
-                        >
-                            <img
-                                src={movie.imageUrl || '/path/to/default-movie.jpg'}
-                                alt={movie.title}
-                                className="movie-image"
-                            />
-                            <h3 className="movie-name">{movie.title}</h3>
-                            <p className="movie-genre">{movie.genre}</p>
-                            <p className="movie-duration">{movie.duration} mins</p>
-                            <div className="movie-actions">
+                        <div key={movie.id} className="movie-card">
+                            <div className="movie-image-container">
+                                <img
+                                    src={movie.imageUrl || '/path/to/default-movie.jpg'}
+                                    alt={movie.title}
+                                    className="movie-image"
+                                />
                                 <button
-                                    onClick={() => navigate(`/movie/${movie.id}`)} // Navigate to Movie Details page
-                                    className="movie-ticket"
+                                    onClick={() => navigate(`/movie/${movie.id}`)}
+                                    className="movie-ticket-overlay"
                                 >
-                                    Show Times
+                                    SHOW TIMES
                                 </button>
                             </div>
                         </div>
                     ))}
                 </div>
-            ) : (
-                <div
-                    className="coming-soon"
-                    style={{
-                        fontWeight: 'bold',
-                        fontSize: '2rem',
-                        textAlign: 'center',
-                        marginTop: '50px',
-                    }}
-                >
-                    Location coming soon
-                </div>
             )}
         </div>
     );
 };
-
 
 export default Movies;
