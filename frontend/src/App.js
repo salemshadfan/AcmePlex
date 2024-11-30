@@ -12,6 +12,8 @@ import Logout from './components/Logout';
 import MovieDetails from './components/MovieDetails';
 import Booking from './components/Booking';
 import ConfirmationPage from './components/ConfirmationPage';
+import SearchQueryPage from './components/SearchQueryPage';
+import CancelPage from './components/Cancel';
 import './index.css';
 import './App.css';
 
@@ -36,7 +38,8 @@ const App = () => {
                         <Route path="/contact" element={<ContactUs/>}/>
                         <Route path="/movie/:id" element={<MovieDetails/>}/>
                         <Route path="/booking/:id" element={<Booking />} />
-
+                        <Route path="/search" element={<SearchQueryPage />} />
+                        <Route path="/refund" element={<CancelPage isLoggedIn={isLoggedIn} />} />
                         <Route path="/confirmation" element={<ConfirmationPage />} />
 
                         {/* Auth Routes */}

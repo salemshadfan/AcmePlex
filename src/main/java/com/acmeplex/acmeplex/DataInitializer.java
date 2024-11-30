@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,32 +70,32 @@ public void init() {
     movie2.setDuration(160);
     movie2.setGenre("Fantasy");
     movie2.setImageUrl("https://filmdb.landmarkcinemas.com/FilmImages/22/1/125006/Web-PosterFrame-MLC-Wicked.jpg");
-
     // Add ShowTimes for Movie 1
     ShowTime showTime1 = new ShowTime();
-    showTime1.setDate("2024-12-01");
-    showTime1.setStartTime("19:30:00");
+    showTime1.setDate(LocalDate.of(2024, 12, 1)); // Use LocalDate.of() for the date
+    showTime1.setStartTime(LocalTime.of(19, 30)); // Use LocalTime.of() for the time
     showTime1.setMovie(movie1);
     showTime1.setTheatre(theatre1);
 
     ShowTime showTime2 = new ShowTime();
-    showTime2.setDate("2024-12-01");
-    showTime2.setStartTime("21:00:00");
+    showTime2.setDate(LocalDate.of(2024, 12, 1)); // Use LocalDate.of() for the date
+    showTime2.setStartTime(LocalTime.of(21, 0)); // Use LocalTime.of() for the time
     showTime2.setMovie(movie1);
     showTime2.setTheatre(theatre2);
 
     // Add ShowTimes for Movie 2
     ShowTime showTime3 = new ShowTime();
-    showTime3.setDate("2024-12-02");
-    showTime3.setStartTime("20:00:00");
+    showTime3.setDate(LocalDate.of(2024, 12, 2)); // Use LocalDate.of() for the date
+    showTime3.setStartTime(LocalTime.of(20, 0)); // Use LocalTime.of() for the time
     showTime3.setMovie(movie2);
     showTime3.setTheatre(theatre1);
 
     ShowTime showTime4 = new ShowTime();
-    showTime4.setDate("2024-12-02");
-    showTime4.setStartTime("22:00:00");
+    showTime4.setDate(LocalDate.of(2024, 12, 2)); // Use LocalDate.of() for the date
+    showTime4.setStartTime(LocalTime.of(22, 0)); // Use LocalTime.of() for the time
     showTime4.setMovie(movie2);
     showTime4.setTheatre(theatre2);
+
 
     // Link ShowTimes to Movies
     movie1.setShowTimes(List.of(showTime1, showTime2));

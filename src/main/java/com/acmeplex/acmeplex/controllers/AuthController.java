@@ -35,6 +35,7 @@ public class AuthController {
         session.setAttribute("userId", user.getId());
         session.setAttribute("email", user.getEmail());
         session.setAttribute("isRegistered", true);
+        
 
         Map<String, Object> response = new HashMap<>();
         response.put("userId", user.getId());

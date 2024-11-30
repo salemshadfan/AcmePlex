@@ -1,0 +1,16 @@
+.search-query-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.search-results-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.search-result-item {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+}

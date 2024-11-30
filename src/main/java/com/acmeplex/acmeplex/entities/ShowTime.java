@@ -3,15 +3,20 @@ package com.acmeplex.acmeplex.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+
+
 
 @Entity
 public class ShowTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String startTime;
-    private String date;
+    private LocalTime startTime;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -30,10 +35,10 @@ public class ShowTime {
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    public String getStartTime() { return startTime; }
-    public void setStartTime(String startTime) { this.startTime = startTime; }
-    public String getDate() { return date; }
-    public void setDate(String date) { this.date = date; }
+    public LocalTime getStartTime() { return startTime; }
+    public void setStartTime(LocalTime startTime) { this.startTime = startTime; }
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
     public Movie getMovie() { return movie; }
     public void setMovie(Movie movie) { this.movie = movie; }
     public Theatre getTheatre() { return theatre; }

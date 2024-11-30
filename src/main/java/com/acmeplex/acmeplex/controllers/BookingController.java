@@ -139,6 +139,7 @@ public class BookingController {
 
         // Prepare receipt response
         Map<String, Object> receiptResponse = new HashMap<>();
+        receiptResponse.put("email", receipt.getTicket().getCustomer().getEmail());
         receiptResponse.put("receiptId", receipt.getId());
         receiptResponse.put("receiptDate", receipt.getReceiptDate());
         receiptResponse.put("totalAmount", receipt.getTotalAmount());
@@ -147,6 +148,7 @@ public class BookingController {
         List<Map<String, Object>> ticketDetails = new ArrayList<>();
         for (Ticket ticket : tickets) {
             Map<String, Object> ticketDetail = new HashMap<>();
+            ticketDetail.put("id", ticket.getId());
             ticketDetail.put("row", ticket.getSeat().getRowNumber());
             ticketDetail.put("seat", ticket.getSeat().getSeat_Number());
             ticketDetail.put("showDate", ticket.getShowtime().getDate());

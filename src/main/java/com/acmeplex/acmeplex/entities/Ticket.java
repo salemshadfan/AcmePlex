@@ -50,6 +50,13 @@ public class Ticket {
         this.customer = customer;
     }
 
+    
+     public Customer getCustomer() {
+        return this.customer;
+     }
+     
+
+
     public Seat getSeat() {
         return this.seat;
     }
