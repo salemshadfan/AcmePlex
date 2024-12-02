@@ -12,10 +12,11 @@ public class AcmePlex {
     private String name;
 
 
-    @OneToMany(mappedBy = "acmeplex")
+    @OneToMany(mappedBy = "acmeplex", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Theatre> theatres;
 
-    // Getters and Setters
+    public AcmePlex() {}
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }

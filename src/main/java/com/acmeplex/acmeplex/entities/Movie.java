@@ -13,6 +13,7 @@ public class Movie {
     private String title;
     private String genre;
     private int duration; // Duration in minutes
+    @Lob
     private String description;
     private String imageUrl;
 

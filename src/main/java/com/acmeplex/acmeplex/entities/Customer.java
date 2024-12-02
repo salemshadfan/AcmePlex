@@ -57,4 +57,13 @@ public abstract class Customer {
     protected void setRegistered(boolean isRegistered) {
         this.isRegistered = isRegistered; // Protected to control from subclasses
     }
+
+    public double calculateRefund(boolean isRegistered, double amount) {
+        if(isRegistered) {
+            return amount;
+        }
+        else {
+            return amount * 0.85;
+        }
+    }
 }

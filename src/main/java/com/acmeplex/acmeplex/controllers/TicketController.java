@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,24 +68,20 @@ public class TicketController {
 
         // Check if the cancelation is allowed (72 hours before showtime)
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime showTime = LocalDateTime.of(ticket.getShowtime().getDate(), ticket.getShowtime().getStartTime());
-        System.err.println(now);
-            System.err.println(showTime);
-        long hoursUntilShow = now.until(showTime, ChronoUnit.HOURS);
-        if (hoursUntilShow < 72) {
+        if (ticket.getShowtime().check72HourRule(now)) {
             return ResponseEntity.badRequest().body("Tickets cannot be canceled less than 72 hours before the showtime.");
         }
 
-        // Calculate refund amount
-        double refundAmount = ticket.getCustomer().isRegistered()
-                ? ticket.getPrice() // Full refund for registered users
-                : ticket.getPrice() * 0.85; // 15% fee for guests
+        boolean isRegistered = ticket.getCustomer().isRegistered();
+        double refundAmount = ticket.getCustomer().calculateRefund(isRegistered, ticket.getPrice());
 
         // Mark the ticket as canceled
         ticket.getSeat().setAvailable(true);
-        paymentRepository.deleteByTicketId(ticket.getId());
+        ticket.sendCancellationEmail(ticket.getCustomer().getEmail());
+                paymentRepository.deleteByTicketId(ticket.getId());
         receiptRepository.deleteByTicketId(ticket.getId());
         ticketRepository.delete(ticket); // Remove the ticket or mark it as canceled
+
 
         return ResponseEntity.ok(new CancelResponse(refundAmount));
     }

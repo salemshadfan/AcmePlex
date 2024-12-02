@@ -15,8 +15,5 @@ public class Guest extends Customer {
         setRegistered(false);
     }
 
-    // Refund calculation
-    public double calculateRefund(double ticketPrice) {
-        return ticketPrice * 0.85; // Deduct 15% admin fee
-    }
+   
 }

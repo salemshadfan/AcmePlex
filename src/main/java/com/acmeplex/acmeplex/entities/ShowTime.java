@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
@@ -45,4 +47,9 @@ public class ShowTime {
     public void setTheatre(Theatre theatre) { this.theatre = theatre; }
     public List<Seat> getSeats() { return seats; }
     public void setSeats(List<Seat> seats) { this.seats = seats; }
+    public boolean check72HourRule(LocalDateTime now){
+        LocalDateTime showTime = LocalDateTime.of(this.getDate(), this.getStartTime());
+        long hoursUntilShow = now.until(showTime, ChronoUnit.HOURS);
+        return hoursUntilShow < 72;
+    };
 }

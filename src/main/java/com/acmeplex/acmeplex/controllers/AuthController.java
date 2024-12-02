@@ -31,7 +31,9 @@ public class AuthController {
         RegisteredUser user = customerRepository.findRegisteredUserByEmailAndPassword(email, password)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
 
-        // Store user ID and email in the session
+        if (!user.login(email, password)) {
+            throw new IllegalArgumentException("Invalid email or password");
+        }
         session.setAttribute("userId", user.getId());
         session.setAttribute("email", user.getEmail());
         session.setAttribute("isRegistered", true);

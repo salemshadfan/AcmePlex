@@ -64,5 +64,9 @@ public class Ticket {
     public ShowTime getShowtime() {
         return this.showTime;
     }
+
+    public void sendCancellationEmail(String email) {
+        System.out.println("ticket cancelled , email sent");
+    }
 }
 

@@ -36,13 +36,14 @@ public class RegisteredUser extends Customer {
         setRegistered(true);
     }
 
-    // Refund calculation
-    public double calculateRefund(double ticketPrice, boolean within72Hours) {
-        if (within72Hours) {
-            return ticketPrice;
-        }
-        throw new IllegalStateException("Cancellation is allowed only up to 72 hours prior to the show.");
+
+
+
+    public boolean login(String inputEmail, String inputPassword) {
+        return this.getEmail().equals(inputEmail) && this.password.equals(inputPassword);
     }
+
+
 
     // Getters and Setters
     public double getAnnualFee() {
