@@ -23,7 +23,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
         <header className="header">
             <div className="logo-container">
                 <img src={logo} alt="AcmePlex Logo" className="logo" />
-                <span className="cinema-name">AcmePlex</span>
+                <Link to='/' className="cinema-name">AcmePlex</Link>
             </div>
             <nav className="nav">
                 <Link to="/" className="nav-link" style={{ color: 'gold', fontSize: '18px', fontWeight: 'bold' }}>

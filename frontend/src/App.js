@@ -14,6 +14,7 @@ import Booking from './components/Booking';
 import ConfirmationPage from './components/ConfirmationPage';
 import SearchQueryPage from './components/SearchQueryPage';
 import CancelPage from './components/Cancel';
+import RegisteredUser from "./components/RegisteredUser";
 import './index.css';
 import './App.css';
 
@@ -41,6 +42,7 @@ const App = () => {
                         <Route path="/search" element={<SearchQueryPage />} />
                         <Route path="/refund" element={<CancelPage isLoggedIn={isLoggedIn} />} />
                         <Route path="/confirmation" element={<ConfirmationPage />} />
+                        <Route path='/registered-users' element={<RegisteredUser />} />
 
                         {/* Auth Routes */}
                         <Route path="/login"
