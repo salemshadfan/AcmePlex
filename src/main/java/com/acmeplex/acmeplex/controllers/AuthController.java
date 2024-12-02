@@ -77,8 +77,9 @@ public class AuthController {
         newUser.setPassword(password);
         newUser.setPaymentmethod(payment); // Associate the saved Payment entity
         newUser.setRegistrationDate(LocalDate.now());
-
+        newUser.chargePayment(payment, newUser.getAnnualFee());
         customerRepository.save(newUser); // Save the RegisteredUser entity
+
 
         return ResponseEntity.ok("Sign-up successful");
     }

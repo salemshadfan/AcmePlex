@@ -65,16 +65,13 @@ public class BookingController {
                 return ResponseEntity.badRequest().body("One or more selected seats are already booked.");
             }
         }
-
-        // Determine customer (always create a new Guest for guest bookings)
         Customer customer;
+
         if (bookingRequest.isGuest()) {
             // Validate guest details
             if (bookingRequest.getGuestFirstName() == null || bookingRequest.getGuestLastName() == null || bookingRequest.getGuestEmail() == null) {
                 return ResponseEntity.badRequest().body("Guest details are required.");
             }
-
-            // Create and save a new Guest
             Guest guest = new Guest();
             guest.setFirstName(bookingRequest.getGuestFirstName());
             guest.setLastName(bookingRequest.getGuestLastName());
@@ -97,7 +94,7 @@ public class BookingController {
             ticket.setSeat(seat);
             ticket.setPrice(bookingRequest.getPrice());
             ticket.setShowTime(seat.getShowTime());
-            ticket.setCustomer(customer); // Set the customer (guest or registered user)
+            ticket.setCustomer(customer);
             tickets.add(ticket);
 
             // Mark seat as unavailable
@@ -110,23 +107,26 @@ public class BookingController {
 
         // Save payment
         Payment payment = new Payment();
-        payment.setAmount(tickets.size() * bookingRequest.getPrice()); // Example: ticket count * price
+        payment.setAmount(tickets.size() * bookingRequest.getPrice());
         if (bookingRequest.isGuest()) {
-            // Guest payment details
             payment.setCreditCardNumber(bookingRequest.getCreditCardNumber());
             payment.setCardType(bookingRequest.getCardType());
             payment.setCcv(bookingRequest.getCcv());
             payment.setExpiryDate(bookingRequest.getExpiryDate());
+            customer.chargePayment(payment, bookingRequest.getPrice());
+
         } else {
             // Registered user payment
+            assert customer instanceof RegisteredUser;
             RegisteredUser registeredUser = (RegisteredUser) customer;
             payment.setCreditCardNumber(registeredUser.getPaymentmethod().getCreditCardNumber());
             payment.setCardType(registeredUser.getPaymentmethod().getCardType());
             payment.setCcv(registeredUser.getPaymentmethod().getCcv());
             payment.setExpiryDate(registeredUser.getPaymentmethod().getExpiryDate());
+            registeredUser.chargePayment(payment, bookingRequest.getPrice());
         }
 
-        // Link payment to the first ticket (or adjust if multiple payments required)
+
         payment.setTicket(tickets.get(0));
         paymentRepository.save(payment);
 

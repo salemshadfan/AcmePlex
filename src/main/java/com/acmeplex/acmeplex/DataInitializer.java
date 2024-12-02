@@ -119,15 +119,15 @@ public class DataInitializer {
         showTime5.setTheatre(theatre1);
 
         ShowTime showTime6 = new ShowTime();
-        showTime6.setDate(LocalDate.of(2024, 12, 4)); // Use LocalDate.of() for the date
-        showTime6.setStartTime(LocalTime.of(22, 0)); // Use LocalTime.of() for the time
+        showTime6.setDate(LocalDate.of(2024, 12, 6)); // Use LocalDate.of() for the date
+        showTime6.setStartTime(LocalTime.of(20, 0)); // Use LocalTime.of() for the time
         showTime6.setMovie(movie3);
         showTime6.setTheatre(theatre2);
 
 
         ShowTime showTime7 = new ShowTime();
-        showTime7.setDate(LocalDate.of(2024, 12, 4)); // Use LocalDate.of() for the date
-        showTime7.setStartTime(LocalTime.of(20, 0)); // Use LocalTime.of() for the time
+        showTime7.setDate(LocalDate.of(2024, 12, 10)); // Use LocalDate.of() for the date
+        showTime7.setStartTime(LocalTime.of(22, 0)); // Use LocalTime.of() for the time
         showTime7.setMovie(movie4);
         showTime7.setTheatre(theatre1);
 

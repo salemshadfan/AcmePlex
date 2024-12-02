@@ -15,5 +15,10 @@ public class Guest extends Customer {
         setRegistered(false);
     }
 
-   
+    @Override
+    public void chargePayment(Payment payment, double amount) {
+        System.out.println("Charging payment for guest");
+    }
+
+
 }

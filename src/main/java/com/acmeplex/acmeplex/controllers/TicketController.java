@@ -78,7 +78,7 @@ public class TicketController {
         // Mark the ticket as canceled
         ticket.getSeat().setAvailable(true);
         ticket.sendCancellationEmail(ticket.getCustomer().getEmail());
-                paymentRepository.deleteByTicketId(ticket.getId());
+        paymentRepository.deleteByTicketId(ticket.getId());
         receiptRepository.deleteByTicketId(ticket.getId());
         ticketRepository.delete(ticket); // Remove the ticket or mark it as canceled
 

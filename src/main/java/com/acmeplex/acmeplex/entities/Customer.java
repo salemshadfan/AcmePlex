@@ -66,4 +66,7 @@ public abstract class Customer {
             return amount * 0.85;
         }
     }
+
+
+    public abstract void chargePayment(Payment payment, double amount);
 }
